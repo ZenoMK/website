@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
 <title>What does Europe's "2GW of compute" actually mean?</title>
+<meta name="description" content="In this blog post, I examine the possible frontier models that could be trained with 2GW of AI compute">
 <style>
   :root{
     --paper:#EDEEEA; --ink:#1A2430; --text:#26303C; --muted:#68717C; --faint:#8D959D;
@@ -146,6 +146,29 @@
     h1{font-size:27px;}
     .fig-top{flex-wrap:wrap;} .switch{margin-left:0;}
   }
+
+  /* narrow screens: stack each row so nothing is clipped */
+  .splitlab{display:none;}
+  @media screen and (max-width:640px){
+    .fig{width:auto; max-width:none; margin-left:0; transform:none;}
+    .frow2{display:grid; grid-template-columns:1fr auto; gap:4px 10px; margin:0 0 14px;}
+    .frow2 .c1{grid-column:1; flex:none; font-size:11.5px;}
+    .frow2 .c2{grid-column:2; flex:none;}
+    .frow2 .ftk{grid-column:1 / -1; flex:none; min-width:0; height:15px;}
+    .frow2 .c4{grid-column:1 / -1; flex:none; font-size:10.5px;}
+    .bd em{display:none;}
+    .splitlab{display:block; color:var(--muted);}
+    .fleet-h span{display:block; margin:3px 0 0;}
+    .fkey{gap:6px 16px; font-size:10px;}
+    .dtab{font-size:10.5px;}
+    .dtab td{padding:8px 8px 8px 0;}
+    .dtab th{padding:0 8px 6px 0;}
+    .dtab .barcell{width:76px; min-width:64px; padding-right:8px;}
+    .dtab .mix b{font-size:11px;}
+    .notes{padding-left:22px;}
+    .notes li::before{left:-22px; width:17px;}
+    .eq{font-size:12px;}
+  }
   @media (prefers-reduced-motion:reduce){ .fbox,.fseg,.fbound,.faxis .bl{transition:none;} }
 
   /* Figure 1: both fleets, static, two budget categories only */
@@ -192,6 +215,10 @@
     #notes{break-before:auto;}
     .notes li{break-inside:avoid;}
     .fig{margin:14pt 0 16pt; width:100%; max-width:none; margin-left:0; transform:none;}
+    .frow2{display:flex;}
+    .frow2 .c1{flex:0 0 150px;} .frow2 .c2{flex:0 0 38px;}
+    .frow2 .ftk{flex:1 1 auto; height:17px;} .frow2 .c4{flex:0 0 130px;}
+    .bd em{display:block;} .splitlab{display:none;}
     .fig-cap, .fnote{font-size:8.5pt;}
     .fig-src{font-size:8pt;}
     .dtab{font-size:8.5pt;}
@@ -284,7 +311,7 @@
           <span class="bd s-train" style="left:0;width:43.34%"><em>training 7.2B</em></span>
           <span class="bd s-infer" style="left:43.34%;width:17.34%"><em>inference 2.9B</em></span>
         </span>
-        <span class="c4">&nbsp;</span>
+        <span class="c4 splitlab">training 7.2B &middot; inference 2.9B</span>
       </div>
       <div class="frow2">
         <span class="c1">Last year's frontier (2025)</span><span class="c2">2.46B</span>
@@ -311,7 +338,7 @@
           <span class="bd s-train" style="left:0;width:68.26%"><em>training 11.3B</em></span>
           <span class="bd s-infer" style="left:68.26%;width:27.30%"><em>inference 4.5B</em></span>
         </span>
-        <span class="c4">&nbsp;</span>
+        <span class="c4 splitlab">training 11.3B &middot; inference 4.5B</span>
       </div>
       <div class="frow2">
         <span class="c1">Last year's frontier (2025)</span><span class="c2">2.46B</span>
