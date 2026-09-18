@@ -13,7 +13,6 @@
     --over:#A33B2A;
     --serif:"Iowan Old Style", Georgia, "Times New Roman", serif;
     --sans:"Helvetica Neue", Helvetica, Arial, sans-serif;
-    --mono:ui-monospace, "SF Mono", Menlo, monospace;
   }
   *{box-sizing:border-box;}
   body{background:var(--paper); margin:0; color:var(--text); font-family:var(--serif);
@@ -30,6 +29,8 @@
   a{color:var(--train); text-decoration:none; border-bottom:1px solid rgba(47,93,124,.32);}
   a:hover{border-bottom-color:var(--train);}
 
+  .pubdate{font-family:var(--sans); font-size:11.5px; color:var(--muted);
+    margin:-14px 0 22px; letter-spacing:.01em;}
   .disclaimer{font-family:var(--sans); font-size:11px; line-height:1.55; color:var(--muted);
     margin:0 0 24px; padding-left:11px; border-left:1px solid var(--rule-hard); max-width:46em;}
   .summary{border-top:1px solid var(--rule-hard); border-bottom:1px solid var(--rule);
@@ -61,8 +62,6 @@
   .frac{display:inline-block; vertical-align:-0.52em; text-align:center; padding:0 3px;}
   .frac .n{display:block; padding:0 5px 1px; line-height:1.25;}
   .frac .d{display:block; padding:1px 5px 0; border-top:1px solid var(--text); line-height:1.25;}
-  .eqwhere{font-family:var(--sans); font-size:10.5px; color:var(--faint);
-    line-height:1.6; margin:0 0 10px;}
 
   /* figures: statistical-annex framing, flat encoded fills */
   .fig{font-family:var(--sans); background:none; border:0; border-radius:0; box-shadow:none;
@@ -75,49 +74,9 @@
   .fig-cap{font-size:11.5px; line-height:1.52; color:var(--muted); margin:0 0 17px;}
   .fig-src{font-size:10.5px; line-height:1.5; color:var(--faint); margin:0;
     padding-top:10px; border-top:1px solid var(--rule);}
-  .switch{margin-left:auto; display:flex; flex:none; border:1px solid var(--rule-hard);}
-  .switch button{font-family:var(--sans); font-size:11px; font-weight:600; padding:3px 10px;
-    border:0; background:none; color:var(--muted); cursor:pointer;}
-  .switch button + button{border-left:1px solid var(--rule-hard);}
-  .switch button:hover{color:var(--ink);}
-  .switch button[aria-pressed="true"]{background:var(--ink); color:var(--paper);}
-
-  .frow{margin:0 0 19px;}
-  .flab{display:flex; justify-content:space-between; align-items:baseline; gap:12px;
-    flex-wrap:wrap; margin-bottom:7px;}
-  .flab .n{font-size:12px; color:var(--text);}
-  .flab .r{display:flex; align-items:baseline; gap:11px; font-variant-numeric:tabular-nums;}
-  .vu{display:inline-flex; align-items:baseline; gap:4px;}
-  .flab .val{font-size:12px; font-weight:700; color:var(--ink);}
-  .flab .unit{font-size:10.5px; color:var(--faint);}
-  .flab .pill{font-size:11px; font-weight:600; padding:0; border-radius:0; background:none;}
-  .flab .ok{color:var(--muted);} .flab .bad{color:var(--over);}
-
-  .ftrack{position:relative; height:26px;}
-  .fbox{position:absolute; left:0; top:0; bottom:0; width:var(--z2,60.67%); z-index:0;
-    background:var(--band); transition:width .4s cubic-bezier(.4,0,.2,1);}
-  .fseg{position:absolute; top:0; bottom:0; z-index:1;
-    transition:left .4s cubic-bezier(.4,0,.2,1), width .4s cubic-bezier(.4,0,.2,1);}
-  .s-rd{background:var(--train);}
-  .s-gray{background:var(--train-pale);}
-  .s-spill{background:repeating-linear-gradient(45deg,var(--infer) 0 3px,#D9A855 3px 6px);}
-  .s-inf{background:var(--infer-pale);}
-  .s-over{background:var(--over);}
-  .fbound{position:absolute; top:-5px; bottom:-5px; left:var(--tb,43.33%); width:1px;
-    background:var(--ink); z-index:3; transition:left .4s cubic-bezier(.4,0,.2,1);}
-  .faxis{position:relative; height:14px; margin-top:6px;}
-  .faxis .bl{position:absolute; top:0; left:var(--tb,43.33%); margin-left:7px;
-    font-size:10px; color:var(--muted); white-space:nowrap;
-    font-variant-numeric:tabular-nums; transition:left .4s cubic-bezier(.4,0,.2,1);}
   .fkey{display:flex; flex-wrap:wrap; gap:9px 30px; margin-top:16px;
     font-size:10.5px; color:var(--muted); align-items:center;}
   .fkey i{display:inline-block; width:9px; height:9px; margin-right:6px; vertical-align:0;}
-  .fkey .ln{display:inline-block; width:11px; height:0; margin-right:6px;
-    vertical-align:3px; border-top:1px solid var(--ink);}
-  .fkey .ln.dash{border-top:1px dashed var(--over);}
-  .fnote{font-size:10.5px; color:var(--muted); line-height:1.6; margin-top:12px;}
-  .fnote b, .fnote .const{color:var(--text); font-weight:600; font-family:var(--sans);
-    background:none; border:0; padding:0;}
 
   .tabwrap{overflow-x:auto;}
   .dtab{width:100%; border-collapse:collapse; font-family:var(--sans); font-size:11.5px;
@@ -129,26 +88,24 @@
     color:var(--text); vertical-align:middle;}
   .dtab tbody tr:last-child td{border-bottom:1px solid var(--rule-hard);}
   .dtab .r{text-align:right; padding-right:0;}
+  .dtab .c{text-align:center;}
+  .dtab th.c{text-align:center;}
+  .dtab th.pair{text-align:center;}
   .dtab .v{font-weight:700; color:var(--ink);}
   .dtab .mix b{display:block; font-weight:700; color:var(--ink); font-size:12px;}
   .dtab .mix span{color:var(--muted);}
   .dtab .barcell{width:118px; min-width:100px; padding-right:14px;}
-  .tbar{position:relative; display:block; height:8px; background:var(--band);}
-  .tbar .f{position:absolute; left:0; top:0; bottom:0; background:var(--infer);}
-  .tbar .mk{position:absolute; top:-3px; bottom:-3px; width:1px; background:var(--ink);
-    left:28.57%;}
+  .tbar{position:relative; display:block; height:11px; background:none;
+    border:1px solid var(--rule-hard);}
+  .tbar .f{position:absolute; left:0; top:1px; bottom:1px; background:var(--infer);}
 
   :focus-visible{outline:2px solid var(--train); outline-offset:2px;}
-  @media (max-width:920px){
-    .sidestack{position:static; left:auto; width:auto; margin:14px 0 8px;}
-  }
   @media (max-width:560px){
     h1{font-size:27px;}
-    .fig-top{flex-wrap:wrap;} .switch{margin-left:0;}
+    .fig-top{flex-wrap:wrap;}
   }
 
   /* narrow screens: stack each row so nothing is clipped */
-  .splitlab{display:none;}
   @media screen and (max-width:640px){
     .fig{width:auto; max-width:none; margin-left:0; transform:none;}
     .frow2{display:grid; grid-template-columns:1fr auto; gap:4px 10px; margin:0 0 14px;}
@@ -156,8 +113,6 @@
     .frow2 .c2{grid-column:2; flex:none;}
     .frow2 .ftk{grid-column:1 / -1; flex:none; min-width:0; height:15px;}
     .frow2 .c4{grid-column:1 / -1; flex:none; font-size:10.5px;}
-    .bd em{display:none;}
-    .splitlab{display:block; color:var(--muted);}
     .fleet-h span{display:block; margin:3px 0 0;}
     .fkey{gap:6px 16px; font-size:10px;}
     .dtab{font-size:10.5px;}
@@ -169,7 +124,6 @@
     .notes li::before{left:-22px; width:17px;}
     .eq{font-size:12px;}
   }
-  @media (prefers-reduced-motion:reduce){ .fbox,.fseg,.fbound,.faxis .bl{transition:none;} }
 
   /* Figure 1: both fleets, static, two budget categories only */
   .fleet{margin:0 0 20px;}
@@ -185,16 +139,11 @@
   .frow2 .c4{flex:0 0 130px; color:var(--muted); font-variant-numeric:tabular-nums;
     line-height:1.3;}
   .frow2 .c4.over{color:var(--over); font-weight:600;}
-  .bd{position:absolute; top:0; bottom:0; overflow:hidden;}
-  .bd em{position:absolute; left:5px; top:50%; transform:translateY(-50%);
-    font-style:normal; font-size:9px; color:var(--ink); white-space:nowrap;
-    font-variant-numeric:tabular-nums;}
-  .s-train{background:var(--train-pale);}
-  .s-infer{background:var(--infer-pale);}
-  .dm{position:absolute; left:0; top:3px; bottom:3px; background:var(--train);}
-  .g{position:absolute; top:-2px; bottom:-2px; width:0; z-index:2;}
-  .gt{border-left:1px solid var(--ink);}
-  .gb{border-left:1.5px dashed var(--over);}
+  .bbox{position:absolute; left:0; top:0; bottom:0; width:50%;
+    border:1px solid var(--rule-hard); background:none;}
+  .fkey i.box{background:none; border:1px solid var(--rule-hard); width:26px; height:10px;}
+  .fr{position:absolute; top:3px; bottom:3px; background:var(--ink);}
+  .rd{position:absolute; top:3px; bottom:3px; background:var(--train);}
 
   /* PDF / print */
   @page{ size:A4; margin:19mm 16mm 20mm; }
@@ -209,6 +158,7 @@
     p{font-size:10.5pt; margin-bottom:9pt;}
     .summary li{font-size:10pt;}
     .disclaimer{font-size:8.5pt;}
+    .pubdate{font-size:9pt; margin:-8pt 0 12pt;}
     a{color:var(--text); border-bottom:0; text-decoration:underline;}
     .notes li, .notes p{font-size:8.5pt;}
     .notes li{margin-bottom:7pt;}
@@ -218,8 +168,7 @@
     .frow2{display:flex;}
     .frow2 .c1{flex:0 0 150px;} .frow2 .c2{flex:0 0 38px;}
     .frow2 .ftk{flex:1 1 auto; height:17px;} .frow2 .c4{flex:0 0 130px;}
-    .bd em{display:block;} .splitlab{display:none;}
-    .fig-cap, .fnote{font-size:8.5pt;}
+    .fig-cap{font-size:8.5pt;}
     .fig-src{font-size:8pt;}
     .dtab{font-size:8.5pt;}
     .dtab th{font-size:8pt;}
@@ -235,12 +184,13 @@
 <div class="wrap"><div class="col">
 
   <h1>What does Europe's "2GW of compute" actually mean?</h1>
+  <p class="pubdate">19 September 2026</p>
   <p class="disclaimer">This blog post is published in my personal capacity. The information and views set out in this post are mine and do not necessarily reflect the official opinion of the European Commission.</p>
   <div class="summary">
   <p class="summary-label">In short</p>
   <ul>
     <li>Europe&rsquo;s current compute is far from enough to train sovereign frontier-sized AI models</li>
-    <li>It is unlikely Europe could meet its demand for AI, even when supplied with trained models</li>
+    <li>Under current trends, it is unlikely Europe could continue to meet its demand for AI, even when supplied with trained models</li>
     <li>Sovereignty ambitions must be aligned with investment; if Europe bets on smaller and cheaper models, this bet should be explicit</li>
   </ul>
 </div>
@@ -294,79 +244,60 @@
   <h3>Training</h3>
     <p>
       Most current frontier training demands are kept secret by the labs. Because calculating compute demand is reliant on many unpublished factors, we will use <a href="https://epoch.ai/data-insights/grok-4-training-resources">this estimate</a> of the largest run tracked by Epoch AI at the time of writing to put European compute into context. Epoch AI calculates that training Grok 4 (trained in 2025) required
-      246 million H100-hours<sup class="fnref" id="fnref-2"><a href="#fn-2">2</a></sup> and $490 million to perform 5&times;10<sup>26</sup> floating-point operations. We assume that Europe can split its compute budget the same way <a href="https://epoch.ai/data-insights/openai-compute-spend">OpenAI did in 2024</a> and devote about 70% to R&amp;D and 30% to inference. We can now estimate how training a 2025 frontier model would fit into our budget after accounting for the fact that <a href="https://epoch.ai/gradient-updates/r-and-d-vs-training-compute">only around 10% of all R&amp;D compute appears to be spent on training the final model</a>, with the rest going to experiments.
+      246 million H100-hours<sup class="fnref" id="fnref-2"><a href="#fn-2">2</a></sup> and $490 million to perform 5&times;10<sup>26</sup> floating-point operations. We assume that Europe can split its compute budget the same way <a href="https://epoch.ai/data-insights/openai-compute-spend">OpenAI did in 2024</a> and devote about 70% to R&amp;D and 30% to inference (<a href="https://epoch.ai/data-insights/company-spending-breakdown">figures from other companies</a> indicate that this estimate sits in a reasonable range across the industry). We can now estimate how training a 2025 frontier model would fit into our budget after accounting for the fact that <a href="https://epoch.ai/gradient-updates/r-and-d-vs-training-compute">only around 10% of all R&amp;D compute appears to be spent on training the final model</a>, with the rest going to experiments<sup class="fnref" id="fnref-3"><a href="#fn-3">3</a></sup>.
     </p>
 
   <figure class="fig" data-fig="one">
     <div class="fig-top">
-      <p class="fig-title"><span class="fignum">Figure 1</span>Training demand against Europe&rsquo;s compute budget, on two GPU fleets</p>
+      <p class="fig-title"><span class="fignum">Figure 1</span>Training demand as a share of Europe&rsquo;s training compute budget</p>
     </div>
-    <p class="fig-cap">The figures below show the share of European compute needed to train frontier models assuming a fleet of either exclusively H100 or B200 GPUs. The total training compute figures are extrapolated from an estimated 10% share of final training runs of total R&amp;D compute.</p>
-
+    <p class="fig-cap">We model the share of European training compute needed to train a 2025 frontier model.<sup class="fnref" id="fnref-4"><a href="#fn-4">4</a></sup> For the training compute demand needed for a 2026 frontier model, we assume the demand follows the 5x year-on-year trend observed by Epoch AI. We consider two scenarios, a fleet consisting only of H100s or only of B200s.</p>
     <div class="fleet">
-      <p class="fleet-h">H100 fleet <span>10.0B H100-equivalent hours a year</span></p>
-      <div class="frow2">
-        <span class="c1">Budget</span><span class="c2"></span>
-        <span class="ftk">
-          <span class="bd s-train" style="left:0;width:43.34%"><em>training 7.2B</em></span>
-          <span class="bd s-infer" style="left:43.34%;width:17.34%"><em>inference 2.9B</em></span>
-        </span>
-        <span class="c4 splitlab">training 7.2B &middot; inference 2.9B</span>
-      </div>
+      <p class="fleet-h">H100 fleet <span>7.2B H100-equivalent hours a year of available R&amp;D compute</span></p>
       <div class="frow2">
         <span class="c1">Last year's frontier (2025)</span><span class="c2">2.46B</span>
         <span class="ftk">
-          <i class="g gt" style="left:43.34%"></i><i class="g gb" style="left:60.68%"></i>
-          <span class="dm" style="width:14.91%"></span>
+          <span class="bbox"></span>
+          <span class="fr" style="left:0;width:1.72%"></span><span class="rd" style="left:1.72%;width:15.48%"></span>
         </span>
-        <span class="c4 ">34% of training budget</span>
+        <span class="c4">34% of training budget</span>
       </div>
       <div class="frow2">
         <span class="c1">Estimated 2026 frontier (5× growth/year)</span><span class="c2">12.3B</span>
         <span class="ftk">
-          <i class="g gt" style="left:43.34%"></i><i class="g gb" style="left:60.68%"></i>
-          <span class="dm" style="width:74.55%"></span>
+          <span class="bbox"></span>
+          <span class="fr" style="left:0;width:8.60%"></span><span class="rd" style="left:8.60%;width:77.40%"></span>
         </span>
         <span class="c4 over">172% of training budget</span>
       </div>
     </div>
     <div class="fleet">
-      <p class="fleet-h">B200 fleet <span>15.8B H100-equivalent hours a year</span></p>
-      <div class="frow2">
-        <span class="c1">Budget</span><span class="c2"></span>
-        <span class="ftk">
-          <span class="bd s-train" style="left:0;width:68.26%"><em>training 11.3B</em></span>
-          <span class="bd s-infer" style="left:68.26%;width:27.30%"><em>inference 4.5B</em></span>
-        </span>
-        <span class="c4 splitlab">training 11.3B &middot; inference 4.5B</span>
-      </div>
+      <p class="fleet-h">B200 fleet <span>11.3B H100-equivalent hours a year of available R&amp;D compute</span></p>
       <div class="frow2">
         <span class="c1">Last year's frontier (2025)</span><span class="c2">2.46B</span>
         <span class="ftk">
-          <i class="g gt" style="left:68.26%"></i><i class="g gb" style="left:95.56%"></i>
-          <span class="dm" style="width:14.91%"></span>
+          <span class="bbox"></span>
+          <span class="fr" style="left:0;width:1.09%"></span><span class="rd" style="left:1.09%;width:9.81%"></span>
         </span>
-        <span class="c4 ">22% of training budget</span>
+        <span class="c4">22% of training budget</span>
       </div>
       <div class="frow2">
         <span class="c1">Estimated 2026 frontier (5× growth/year)</span><span class="c2">12.3B</span>
         <span class="ftk">
-          <i class="g gt" style="left:68.26%"></i><i class="g gb" style="left:95.56%"></i>
-          <span class="dm" style="width:74.55%"></span>
+          <span class="bbox"></span>
+          <span class="fr" style="left:0;width:5.46%"></span><span class="rd" style="left:5.46%;width:49.14%"></span>
         </span>
         <span class="c4 over">109% of training budget</span>
       </div>
     </div>
 
     <div class="fkey">
-      <span><i style="background:#B7CAD8"></i>training budget</span>
-      <span><i style="background:#E4D3B2"></i>inference budget</span>
-      <span><i style="background:#2F5D7C"></i>R&amp;D compute demand</span>
-      <span><span class="ln"></span>training / inference split</span>
-      <span><span class="ln dash"></span>fleet limit</span>
+      <span><i class="box"></i>training budget</span>
+      <span><i style="background:#1A2430"></i>final training run</span>
+      <span><i style="background:#2F5D7C"></i>other R&amp;D compute</span>
     </div>
 
-    <p class="fig-src">Source: Epoch AI, Grok 4 training resources and <a href="https://epoch.ai/gradient-updates/r-and-d-vs-training-compute">R&amp;D vs training compute</a>; Europe 2031 compute forecast.</p>
+    <p class="fig-src">Source: Epoch AI, <a href="https://epoch.ai/data-insights/grok-4-training-resources">Grok 4 training resources</a> and <a href="https://epoch.ai/gradient-updates/r-and-d-vs-training-compute">R&amp;D vs training compute</a>; Europe 2031 <a href="https://europe2031.ai/compute-forecast/">compute forecast</a>.</p>
   </figure>
 
   <p>
@@ -374,7 +305,7 @@
     In practice, large training runs usually require GPUs to be in close proximity. 
     As Europe&rsquo;s compute is highly fragmented, we need to acknowledge that the numbers above represent an absolute (currently non-existent) best case. 
     Still, we see that under these assumptions, Europe could train a 2025 frontier model while having compute devoted to inference. 
-    However, Epoch AI estimates that frontier model training demand grows about <a href="https://epoch.ai/trends#training-runs">5x year-on-year</a> and the 10% figure for the proportion of R&amp;D compute going to final training runs seems stable across a few companies. 
+    However, Epoch AI estimates that frontier model training demand grows about <a href="https://epoch.ai/trends#training-runs">5x year-on-year</a> and the 10% figure for the proportion of R&amp;D compute going to final training runs seems stable across a few companies.
      If these trends hold, we see that training the estimated 2026 frontier would exhaust Europe&rsquo;s training compute budget even after upgrading our GPU fleet to B200 GPUs. Holding the frontier seems very unlikely even in the best of worlds for a pan-European AI effort even before considering that inference compute demand is also rapidly growing.
   </p>
 
@@ -387,48 +318,43 @@
 
   <h3>Inference</h3>
     <p>
-      AI consumption is measured (and billed) in tokens. One token corresponds roughly to &frac34; of a word.
-      Goldman Sachs estimates a current global token consumption of <a href="https://www.goldmansachs.com/insights/articles/ai-agents-forecast-to-boost-tech-cash-flow-as-usage-soars">5
-      quadrillion tokens a month</a>. We will take this as our baseline estimate and extrapolate a 15%
-      share of consumption in Europe, giving us 750 trillion tokens a month<sup class="fnref" id="fnref-3"><a href="#fn-3">3</a></sup> consumed in Europe. We will make
+      AI consumption is measured (and billed) in tokens. One token corresponds roughly to &frac34; of a word. Exponential View estimates a global token demand of around <a href="https://www.exponentialview.co/p/monday-data-the-cost-of-tokenmaxxing">13 quadrillion tokens a month</a>. We will take this as our baseline estimate and extrapolate a 15%
+      share of consumption in Europe, giving us 1.95 quadrillion tokens a month<sup class="fnref" id="fnref-5"><a href="#fn-5">5</a></sup> consumed in Europe. We will make
       the optimistic assumption here that these tokens are demanded at a constant rate of
-      1.04 trillion per hour<sup class="fnref" id="fnref-4"><a href="#fn-4">4</a></sup>. Calculating the compute demand
+      2.71 trillion per hour<sup class="fnref" id="fnref-6"><a href="#fn-6">6</a></sup>. Calculating the compute demand
       for inference is quite sensitive to the specific models used, and no sufficient details are published
-      for current frontier models. We can use the figures <a
-      href="https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use">published by Epoch AI</a>, who have calculated power demand per query for GPT-4o for different types of queries. While
-      GPT-4o is far from the current frontier, it is among the newer models for which we have inference electricity consumption estimates. The table below shows us how these numbers
-      behave in the context of current European compute.
+      for current frontier models. Epoch AI tried to estimate <a href="https://epoch.ai/gradient-updates/is-a-compute-crunch-coming">global inference capacity in May 2026</a> by using the Kimi K2.6, most capable open-source model at the time. Before we move onto the numbers, it&rsquo;s important to understand that different types of AI uses have different token usage profiles. For example, using a model as a chatbot or for document summarization requires very different input/output token ratios (input tokens are the tokens given by the user, while output tokens are produced by the model) than using an AI for coding or agentic tasks. Epoch AI provides numbers for different inference profiles, and the table below shows us how their estimates translate onto European compute capacity and token demand. Note that these numbers are calculated assuming that we could use the newer fleet consisting only of B200 GPUs, which provides an upper bound on Europe&rsquo;s actual current inference compute capacity. 
     </p>
   <figure class="fig" data-fig="two">
     <div class="fig-top">
       <p class="fig-title"><span class="fignum">Figure 2</span>Serving capacity by query mix, against Europe&rsquo;s 2&nbsp;GW</p>
     </div>
-    <p class="fig-cap">Supply is Europe&rsquo;s full 2&nbsp;GW of facility power divided by the energy each query costs.</p>
+    <p class="fig-cap">We extrapolate European token serving capacity (tokens processed per hour) from Epoch AI&rsquo;s numbers<sup class="fnref" id="fnref-7"><a href="#fn-7">7</a></sup>. The table shows the share of total European compute and the share of assumed European inference compute (30% of the total) needed to meet inference demand (assuming inference demand is either all general use, all agentic coding, or all long-context, but not a mix of the three).</p>
     <div class="tabwrap">
       <table class="dtab">
         <thead>
           <tr>
-            <th>Query mix</th>
-            <th class="r">Energy<br>per query</th>
-            <th class="r">Serving capacity<br>(tokens/hour)</th>
-            <th class="r">Share of<br>Europe&rsquo;s 2&nbsp;GW</th>
-            <th class="barcell"></th>
-            <th class="r">Share of inference budget</th>
+            <th>Query mix<br>(input : output)</th>
+            <th class="c">Total European inference capacity<br>(tokens processed/hour)</th>
+            <th class="pair" colspan="2">Share of total compute<br>needed to meet demand</th>
+            <th class="c">Share of inference compute<br>needed to meet demand</th>
           </tr>
         </thead>
         <tbody id="itable"></tbody>
       </table>
     </div>
-    <p class="fig-src">Source: Epoch AI, GPT-4o inference energy; Goldman Sachs, global token consumption; Anthropic Economic Index (September 2025).</p>
+
+    <div class="fkey">
+      <span><i class="box"></i>inference budget</span>
+      <span><i style="background:#C08A2E"></i>European token demand</span>
+    </div>
+    <p class="fig-src">Source: Luke Emberson and Jaime Sevilla (2026), <a href="https://epoch.ai/gradient-updates/is-a-compute-crunch-coming">&ldquo;Is a compute crunch coming?&rdquo;</a>, Epoch AI; Exponential View, <a href="https://www.exponentialview.co/p/monday-data-the-cost-of-tokenmaxxing">total tokens processed across all providers</a>.</p>
   </figure>
 
   <p>
-    We can see that all three scenarios fit into our compute budget if we assume no training workloads will be run. However, there are some important
-    caveats here, including the fact that demand at peak might be many times higher than the assumed 1.04
-    trillion tokens per hour, and that the increasingly popular agentic tasks can have vastly higher compute
-    demands than those simulated here. It therefore seems unlikely that current European peak token demand
-    could be served with compute located in Europe even if no compute is used for training.
-If we assume only about 30% of our compute to be used for inference, the first scenario uses up 91% of the inference compute budget, even if demand is distributed evenly across the day, indicating an immense difficulty of keeping up with training and inference simultaneously.
+    We can see that all three scenarios fit into our inference compute budget. However, there are some important
+    caveats here, including the fact that demand at peak might be many times higher than the assumed 2.71
+    trillion tokens per hour. Additionally, Kimi K2.6 is likely a lot smaller than GPT-5.5 (see Note 1 <a href="https://epoch.ai/gradient-updates/is-a-compute-crunch-coming">here</a>) and thus less computationally expensive compared to &ldquo;true&rdquo; frontier models. To make matters worse, Epoch AI estimates that demand at current prices could be rising 10x year-on-year, while the compute forecast in Europe2031 only has European compute rising to 5.2GW by 2027. Therefore, a similar story as with training emerges: Under optimistic assumptions, Europe has enough inference compute for now, but is very likely to be underpowered going into the near future. 
   </p>
 
   <h2>How does European compute scaling compare to demand?</h2>
@@ -443,7 +369,7 @@ If we assume only about 30% of our compute to be used for inference, the first s
     Still, there&rsquo;s no guarantee the current global compute trend can keep up: even the US compute buildout
     might not keep pace with demand given that the <a href="https://www.wsj.com/tech/ai/americas-data-center-build-out-is-falling-way-behind-schedule-e408a9a8">Wall
     Street Journal</a> reports 60% of data center capacity set for
-    completion in 2027 has not started construction as of May 2026.
+    completion in 2027 had not started construction as of May 2026.
   </p>
 
   <p>
@@ -475,6 +401,12 @@ If we assume only about 30% of our compute to be used for inference, the first s
     resources into better context.
   </p>
 
+  <h2>Acknowledgements</h2>
+
+  <p>
+    I thank Luke Emberson for the constructive feedback on this post.
+  </p>
+
   <h2 id="notes">Notes</h2>
   <ol class="notes">
     <li id="fn-1"><p>
@@ -491,40 +423,55 @@ If we assume only about 30% of our compute to be used for inference, the first s
             each drawing 1,000W vs 700W, giving a factor of ~1.57&times; to convert from H100-hours.
           </p></li>
     <li id="fn-3"><p>
-            We use 5 quadrillion as a rough baseline
-            and apply a 15% European share derived from country usage in the
-            <a href="https://www.anthropic.com/research/anthropic-economic-index-september-2025-report">Anthropic
-            Economic Index (September 2025)</a>, giving 750 trillion tokens per month. This is an uncertain estimate and an imprecise proxy for tokens (as token demands are vastly different between conversational use and coding agents).
+            While the rest of the R&amp;D budget might not be fully attributable to the final run that produces
+            the frontier model, it is nevertheless necessary to sustain competition at the frontier level.
           </p></li>
-    <li id="fn-4"><div class="eq"><div class="ln"><span class="v">D</span><span class="op">=</span><span class="frac"><span class="n">750 &times; 10<sup>12</sup></span><span class="d">30 &middot; 24</span></span><span class="op">=</span>1.04 &times; 10<sup>12</sup><span class="u">tokens / hour</span></div><div class="ln"><span class="v">queries</span><span class="op">=</span><span class="frac"><span class="n"><span class="v">EUROPE</span><sub>W</sub></span><span class="d"><span class="v">Wh</span><sub>per query</sub></span></span><span class="u">W = Wh per hour</span></div><div class="ln"><span class="v">supply</span><span class="op">=</span><span class="v">queries</span><span class="op">&middot;</span>(<span class="v">inTok</span><span class="op">+</span><span class="v">outTok</span>)</div><div class="ln"><span class="v">capacity</span><span class="op">=</span><span class="frac"><span class="n"><span class="v">D</span></span><span class="d"><span class="v">supply</span></span></span></div></div>
-          <p>Demand assumes tokens arrive uniformly across all hours. The three input:output
-          ratios use Epoch AI&rsquo;s published figures directly: <b>0.3&nbsp;Wh</b> (~100:500),
-          <b>2.5&nbsp;Wh</b> (10k:500), <b>40&nbsp;Wh</b> (100k:500). These figures are on a facility-level (not a GPU-level as in the training section, hence the switch to 2GW for consistency with Epoch AI's figures).</p></li>
+    <li id="fn-4"><p>
+            We assume the model has the same compute requirements as the final training run for Grok 4
+            using Epoch AI&rsquo;s numbers, assuming a 10% share of R&amp;D compute devoted to the final run
+            and a 70/30 split between R&amp;D/inference compute.
+          </p></li>
+    <li id="fn-5"><p>
+            Applying a 15% European share derived from country usage in the
+            <a href="https://www.anthropic.com/research/anthropic-economic-index-september-2025-report">Anthropic
+            Economic Index (September 2025)</a> gives about 1.95 quadrillion tokens a month or 2.71 trillion tokens an hour. 
+          </p></li>
+        <li id="fn-6"><div class="eq"><div class="ln"><span class="v">D</span><span class="op">=</span><span class="frac"><span class="n">13 &times; 10<sup>15</sup> &middot; 0.15</span><span class="d">30 &middot; 24</span></span><span class="op">=</span>2.71 &times; 10<sup>12</sup><span class="u">tokens / hour</span></div></div>
+          <p>Demand assumes tokens arrive uniformly across all hours.</p></li>
+    <li id="fn-7"><p>As above, we assume 40% of data center power being used on the GPUs themselves and
+          1000W per B200 (Epoch gives their numbers in GB200 NVL72 racks, which we convert into individual
+          GPUs for simplicity). This gives us:</p>
+          <div class="eq"><div class="ln"><span class="v">racks</span><span class="op">=</span><span class="frac"><span class="n"><span class="v">EUROPE</span><sub>W</sub><span class="op">&middot;</span>0.4</span><span class="d">72<span class="op">&middot;</span>1,000<span class="u">W</span></span></span><span class="op">=</span>11,111</div><div class="ln"><span class="v">supply</span><span class="op">=</span><span class="v">racks</span><span class="op">&middot;</span><span class="v">outTok/s</span><span class="op">&middot;</span>(1<span class="op">+</span><span class="v">ISL</span><span class="op">/</span><span class="v">OSL</span>)<span class="op">&middot;</span>3,600<span class="u">tokens / hour</span></div><div class="ln"><span class="v">capacity used</span><span class="op">=</span><span class="frac"><span class="n"><span class="v">D</span></span><span class="d"><span class="v">supply</span></span></span></div></div>
+          <p>Epoch AI&rsquo;s inference model reports <b>output</b> tokens per second for a GB200 NVL72 rack
+          serving Kimi K2.6. So, for the 8k:1k usage, Epoch lists 400,000 output tokens per second per rack,
+          giving a total European inference capacity of 11,111 &times; 9 &times; 3,600 &times; 400,000 =
+          144 trillion tokens an hour.</p></li>
   </ol>
 </div></div>
 
 <script>
-const K = { EUROPE_W:2e9 };
-const DEMAND = 0.75e15 / 30 / 24;
+const K = { EUROPE_W:2e9, GPU_SHARE:0.4, B200_W:1000, GPUS_PER_RACK:72 };
+const RACKS = K.EUROPE_W * K.GPU_SHARE / K.B200_W / K.GPUS_PER_RACK;   // ~11,111 NVL72 racks
+const DEMAND = (13e15 * 0.15) / (30 * 24);                             // tokens/hour, input + output
 const REGIMES = [
-  { mix:"100 : 500",  what:"chat and Q&A",                inTok:100,    outTok:500, wh:0.3 },
-  { mix:"10k : 500",  what:"document analysis",           inTok:10000,  outTok:500, wh:2.5 },
-  { mix:"100k : 500", what:"agentic and large codebases", inTok:100000, outTok:500, wh:40  },
+  { mix:"8k : 1k",   what:"general use",            inTok:8000,   outTok:1000, rackOut:400e3 },
+  { mix:"25k : 1k",  what:"agentic coding",         inTok:25000,  outTok:1000, rackOut:110e3 },
+  { mix:"128k : 1k", what:"long-context sessions",  inTok:128000, outTok:1000, rackOut:9e3   },
 ];
-const T = n => (n/1e12).toFixed(2) + "T";
-const pct = x => Math.round(x*100) + "%";
+const T = n => (n/1e12).toFixed(1) + "T";
+const pct = x => (x*100 < 10 ? (x*100).toFixed(1) : Math.round(x*100)) + "%";
 
 document.getElementById("itable").innerHTML = REGIMES.map(r => {
-  const supply = (K.EUROPE_W / r.wh) * (r.inTok + r.outTok);
-  const used = DEMAND / supply;
+  const supply = RACKS * r.rackOut * (1 + r.inTok / r.outTok) * 3600;
+  const used = DEMAND / supply;              // share of Europe's full 2 GW
+  const ofBudget = used * 7/2;               // share of the 30% inference budget
   return '<tr>'
     + '<td class="mix"><b>' + r.mix + '</b><span>' + r.what + '</span></td>'
-    + '<td class="r">' + r.wh + ' Wh</td>'
-    + '<td class="r">' + T(supply) + '</td>'
+    + '<td class="c">' + T(supply) + '</td>'
     + '<td class="r v">' + pct(used) + '</td>'
     + '<td class="barcell"><span class="tbar"><span class="f" style="width:'
-      + Math.min(100, used*100).toFixed(1) + '%"></span><span class="mk"></span></span></td>'
-    + '<td class="r v">' + pct(used * 7/2) + '</td>'
+      + Math.min(100, ofBudget*100).toFixed(1) + '%"></span></span></td>'
+    + '<td class="c v">' + pct(ofBudget) + '</td>'
     + '</tr>';
 }).join("");
 
