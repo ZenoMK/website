@@ -18,15 +18,18 @@
     -webkit-font-smoothing:antialiased;
     display:flex; align-items:center; justify-content:center;}
   main{width:100%; max-width:640px; padding:40px 24px 64px;}
+  .topbar{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:18px;}
   h1{font-size:33px; line-height:1.2; font-weight:600; letter-spacing:-.012em;
-    color:var(--ink); margin:0 0 18px;}
+    color:var(--ink); margin:0;}
+  nav{font-family:var(--sans); font-size:15px; display:flex; gap:16px; align-items:center;}
   .rule{border:0; border-top:1px solid var(--rule-hard); margin:0 0 20px;}
-  p{font-size:17px; line-height:1.62; margin:0; max-width:34em;}
+  p{font-size:17px; line-height:1.62; margin:0 0 18px; max-width:34em;}
   a{color:var(--train); text-decoration:none; border-bottom:1px solid rgba(47,93,124,.32);}
   a:hover{border-bottom-color:var(--train);}
   .mail{font-family:var(--sans); font-size:15.5px; color:var(--ink); white-space:nowrap;}
   :focus-visible{outline:2px solid var(--train); outline-offset:2px;}
   @media (max-width:560px){
+    .topbar{align-items:flex-start; flex-direction:column; gap:8px;}
     h1{font-size:27px;}
     p{font-size:16px;}
     .mail{white-space:normal;}
@@ -35,11 +38,19 @@
 </head>
 <body>
 <main>
-  <h1>Zeno Kujawa</h1>
+  <div class="topbar">
+    <h1>Zeno Kujawa</h1>
+    <nav aria-label="Main navigation">
+      <a href="/blog/">blog</a>
+      <a href="https://www.linkedin.com/in/zeno-kujawa/">CV</a>
+    </nav>
+  </div>
   <hr class="rule">
-  <p>Coming soon! In the meantime, feel free to reach out to me on
-  <span class="mail">zeno [dot] kujawa [at] gmail [dot] com</span> or
-  <a href="https://www.linkedin.com/in/zeno-kujawa/">LinkedIn</a>.</p>
+  <p>Currently, I&rsquo;m a Programme Manager at the European Commission. Previously, I did ML research at Northeastern, Cambridge, and Edinburgh.</p>
+
+  <p>I&rsquo;m interested in AI, EU policy, and the intersection between the two. Outside of my work, I enjoy reading (fittingly, I am currently reading &ldquo;The Capital&rdquo; by Menasse) and running. I am originally from Vienna, Austria.</p>
+
+  <p>Feel free to reach out at <span class="mail">zeno [dot] kujawa [at] gmail [dot] com</span>.</p>
 </main>
 </body>
 </html>
